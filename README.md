@@ -16,6 +16,8 @@ This model predicts the likelihood that an animal brought into the shelter will 
 **ACKNOWLEDGEMENTS**
 
 **KEY FEATURES**
+
+
 animal_type: Species name of the animal. 
 
 
