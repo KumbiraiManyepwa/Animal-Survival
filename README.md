@@ -1,6 +1,7 @@
 **PROJECT TITLE:  ANIMAL SURVIVAL**
 
 **PROJECT DESCRIPTION**
+
 **Brief overview of what the project does.**
 This model predicts the likelihood that an animal brought into the shelter will die or survive before leaving the facility, using intake-related information available at the time of arrival.
 
