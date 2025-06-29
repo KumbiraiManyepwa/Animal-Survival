@@ -18,28 +18,28 @@ This model predicts the likelihood that an animal brought into the shelter will 
 **KEY FEATURES**
 
 
-animal_type: Species name of the animal. 
+1) animal_type: Species name of the animal. 
 
 
-sex factor: Altered Sex of the animal. 
+2) sex factor: Altered Sex of the animal. 
 
 
-dob date: Date of Birth 
+3) dob date: Date of Birth 
 
 
-intake_date: Date on which Animal was brought to the shelter . 
+4) intake_date: Date on which Animal was brought to the shelter . 
 
 
-intake_condition: Condition of animal at intake. 
+5) intake_condition: Condition of animal at intake. 
 
 
-intake_type: The reason for intake such as stray capture, wildlife captures, adopted but returned, owner surrendered etc.
+6) intake_type: The reason for intake such as stray capture, wildlife captures, adopted but returned, owner surrendered etc.
 
 
-reason_for_intake: The reason an owner surrendered their animal. 
+7) reason_for_intake: The reason an owner surrendered their animal. 
 
 
-outcome_date: Exit or Outcome date such as date of adoption or date animal died.
+8) outcome_date: Exit or Outcome date such as date of adoption or date animal died.
 
 
-jurisdiction: Geographical jurisdiction of where an animal originated.
+9) jurisdiction: Geographical jurisdiction of where an animal originated.
