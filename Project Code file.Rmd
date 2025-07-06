@@ -1,0 +1,135 @@
+---
+title: "Project tools for business analytics"
+author: "Kumbirai N Manyepwa"
+date: "2025-06-24"
+output: html_document
+---
+
+```{r}
+animal_survival <- read.csv("C:/Users/m/Downloads/animal-shelter-intakes-and-outcomes.csv")
+```
+
+```{r}
+#| echo: false
+#| warning: false
+library(MASS)
+library(forecast) 
+library(ggplot2)
+library(ggfortify)
+library(kableExtra)
+library(ISLR)
+library(boot)
+library(leaps)
+library(glmnet)
+library(pls)
+library(lattice)
+library(class)
+library(tidyverse)
+library(ISLR)
+library(nnet)
+library(dplyr)
+library(ModelMetrics)
+library(rpart)
+library(ipred)
+library(caret)
+library(randomForest)
+library(rpart.plot)
+```
+
+```{r}
+#Selecting variables im going to work with
+data_selected <- animal_survival %>% select(Animal.Type, Intake.Date, Intake.Condition, Jurisdiction, outcome_is_dead, DOB)
+```
+
+```{r}
+# Converting data types
+data_selected <- data_selected %>%
+  mutate(Intake.Date = as.Date(Intake.Date),
+         outcome_is_dead = as.factor(outcome_is_dead),
+         DOB = as.Date(DOB),
+         Animal.Type = as.factor(Animal.Type),
+         Intake.Condition = as.factor(Intake.Condition),
+         Jurisdiction = as.factor(Jurisdiction))
+```
+
+```{r}
+data_clean <- data_selected %>% drop_na()
+```
+
+```{r}
+#Test and train split
+set.seed(123)
+size <- floor(0.10 * nrow(data_clean))
+
+test_index=sample(seq_len(nrow(data_clean)), size = size)
+
+train=data_clean[-test_index, ]
+test=data_clean[test_index, ]
+```
+
+```{r}
+library(tidymodels)
+```
+
+```{r}
+#Recipe
+rf_recipe <- recipe(outcome_is_dead ~ ., data = train) %>%
+  step_normalize(all_numeric_predictors()) %>%
+  step_dummy(all_nominal_predictors())
+
+```
+
+```{r}
+#Model
+rf_model <- rand_forest(trees = 500) %>%
+  set_engine("ranger") %>%
+  set_mode("classification")  
+```
+
+```{r}
+#Creating workflow
+rf_workflow <- workflow() %>%
+  add_model(rf_model) %>%
+  add_recipe(rf_recipe)
+```
+
+```{r}
+#Training the model
+rf_fit <- rf_workflow %>% fit(data = train)
+```
+
+```{r}
+#Predictions
+rf_predictions <- predict(rf_fit, test, type = "class") %>%
+  bind_cols(test)
+```
+
+```{r}
+#Confusion Matrix
+rf_predictions %>%
+  conf_mat(truth = outcome_is_dead, estimate = .pred_class)
+
+```
+
+```{r}
+#classification metrics
+rf_predictions %>%
+  metrics(truth = outcome_is_dead, estimate = .pred_class)
+
+```
+
+```{r}
+# Sensitivity (Recall)
+rf_predictions %>%
+  sens(truth = outcome_is_dead, estimate = .pred_class)
+
+# Specificity
+rf_predictions %>%
+  spec(truth = outcome_is_dead, estimate = .pred_class)
+```
+
+```{r}
+# Accuracy
+rf_predictions %>%
+  accuracy(truth = outcome_is_dead, estimate = .pred_class)
+```
