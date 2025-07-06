@@ -10,8 +10,8 @@ This model predicts the likelihood that an animal brought into the shelter will 
 **The problem it solves or the purpose it serves.**
 
 
-- I used logistic regression and the model serves as a decision-making tool for animal shelter operators, adopters, the owners of the animals, veterinarians, and policy makers to  identify at risk animals early and improve welfare outcomes. 
-- The model predicts whether an animal will be dead or not at the end of its stay at the shelter.
+- The model serves as a decision-making tool for animal shelter operators, adopters, the owners of the animals, veterinarians, and policy makers to  identify at risk animals early and improve welfare outcomes. 
+- It predicts whether an animal will be dead or not at the end of its stay at the shelter.
 - This is a binary classification with 0 if its not dead and 1 if its dead. It helps come up with a probability score and a categorical label which allows end users to have a preliminary assessment to in turn assist them in prioritizing resources and high risk cases.
 - This model is particularly useful for spotting vulnerable animals such as the very young, the injured, or those surrendered under poor conditions and intervening as early as possible.
 
@@ -77,3 +77,8 @@ This project would not have been possible without the invaluable support of:
 4) Shelter Operations Analysts / Data Analysts. To continuously monitor trends, evaluate shelter performance, and improve shelter processes based on predictive risk profiles.
 5) Local Government / City Officials. To make funding, policy, and operational decisions related to animal sheltering and public health.
 6) Potential Collaborators or Rescuers. To select animals for rescue partnerships or medical interventions based on urgency.
+
+
+**CONTRIBUTIONS**
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
